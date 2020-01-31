@@ -2,10 +2,30 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
+        <AssemblyName>HelpfulThings.Parser.PeFile</AssemblyName>
+        <RootNamespace>HelpfulThings.Parser.PeFile</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Helpful Things PE File Parser</Title>
+        <Description>A parser for PE files.</Description>
+        <Authors>Marissa</Authors>
+        <Copyright>2020</Copyright>
+        <PackageProjectUrl>https://github.com/bytewisemarissa/HelpfulThings.Parser.PeFile</PackageProjectUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageIconUrl>https://i.imgur.com/qLyye40.png</PackageIconUrl>
+        <RepositoryUrl>https://github.com/bytewisemarissa/HelpfulThings.Parser.PeFile</RepositoryUrl>
+        <RepositoryType>Github</RepositoryType>
+        <PackageVersion>0.0.1</PackageVersion>
+        <AssemblyVersion>0.0.1</AssemblyVersion>
     </PropertyGroup>
-
     <ItemGroup>
       <PackageReference Include="HelpfulThings.Tooling.MemoryWindow" Version="1.1.0" />
     </ItemGroup>
-
+    <ItemGroup>
+        <Folder Include="NugetSupport" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="NugetSupport\icon.png" Pack="true" PackagePath="$(PackageIcon)" />
+        <None Include="NugetSupport\LICENSE" Pack="true" PackagePath="$(PackageLicenceFile)" />
+    </ItemGroup>
 </Project>

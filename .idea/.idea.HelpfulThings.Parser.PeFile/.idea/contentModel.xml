@@ -52,6 +52,10 @@
           </e>
         </e>
         <e p="HelpfulThings.Parser.PeFile.csproj" t="IncludeRecursive" />
+        <e p="NugetSupport" t="Include">
+          <e p="LICENSE" t="Include" />
+          <e p="icon.png" t="Include" />
+        </e>
         <e p="ParseResult.cs" t="Include" />
         <e p="ParserExceptionOption.cs" t="Include" />
         <e p="PortableExecutableFile.cs" t="Include" />
