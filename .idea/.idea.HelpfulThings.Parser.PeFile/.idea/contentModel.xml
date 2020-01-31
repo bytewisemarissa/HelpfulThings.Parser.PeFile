@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2019.2/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.2/system/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_HelpfulThings.Parser.PeFile.1210705163.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.4.0/build/netcoreapp2.1" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="$USER_HOME$/.nuget/packages/mstest.testadapter/2.0.0/build/_common/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mstest.testadapter/2.0.0/build/_common/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mstest.testadapter/2.0.0/build/netcoreapp1.0/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="HelpfulThings.Parser.PeFile" t="IncludeRecursive">
+        <e p="Common" t="Include">
+          <e p="PortableExecutableFilePart.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="Constants.cs" t="Include" />
+          <e p="Header" t="Include">
+            <e p="Characteristics.cs" t="Include" />
+            <e p="FileHeader.cs" t="Include" />
+            <e p="Headers.cs" t="Include" />
+            <e p="MsDosHeader.cs" t="Include" />
+            <e p="OptionalHeader.cs" t="Include" />
+            <e p="OptionalHeaderDataDirectories.cs" t="Include" />
+            <e p="OptionalHeaderNtSpecificFields.cs" t="Include" />
+            <e p="OptionalHeaderStandardFields.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Exceptions" t="Include">
+          <e p="CharacteristicsException.cs" t="Include" />
+          <e p="ExceptionCollector.cs" t="Include" />
+          <e p="ExceptionLevel.cs" t="Include" />
+          <e p="HeaderException.cs" t="Include" />
+          <e p="InvalidPESignatureException.cs" t="Include" />
+          <e p="MSDOSHeaderException.cs" t="Include" />
+          <e p="OptionalHeaderException.cs" t="Include" />
+          <e p="OptionalHeaderNtSpecificFieldsException.cs" t="Include" />
+          <e p="OptionalHeaderStandardFieldsException.cs" t="Include" />
+          <e p="ParserException.cs" t="Include" />
+        </e>
+        <e p="FileHeaders" t="Include">
+          <e p="FileHeader.cs" t="Include" />
+          <e p="FileHeaderCharacteristics.cs" t="Include" />
+          <e p="MSDosHeader.cs" t="Include" />
+          <e p="OptionalHeader.cs" t="Include" />
+          <e p="OptionalHeaderDataDirectories.cs" t="Include" />
+          <e p="OptionalHeaderNtSpecificFields.cs" t="Include" />
+          <e p="OptionalHeaderStandardFields.cs" t="Include" />
+          <e p="Signatures" t="Include">
+            <e p="PortableExecutableFileHeaderSignature.cs" t="Include" />
+          </e>
+        </e>
+        <e p="HelpfulThings.Parser.PeFile.csproj" t="IncludeRecursive" />
+        <e p="ParseResult.cs" t="Include" />
+        <e p="ParserExceptionOption.cs" t="Include" />
+        <e p="PortableExecutableFile.cs" t="Include" />
+        <e p="PortableExecutableParser.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.1" t="Include">
+              <e p="HelpfulThings.Parser.PeFile.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="HelpfulThings.Parser.PeFile.Tests" t="IncludeRecursive">
+        <e p="ByteCollections.cs" t="Include" />
+        <e p="HelpfulThings.Parser.PeFile.Tests.csproj" t="IncludeRecursive" />
+        <e p="PortableExecutableParserTests.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="HelpfulThings.Parser.PeFile.Tests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="HelpfulThings.Parser.PeFile.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
