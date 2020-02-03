@@ -14,11 +14,11 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
 
         public MsDosHeader(ExceptionCollector collector, MemorySlice slice) : base(slice)
         {
-            if (Slice.Count > Constants.Headers.MsDosHeader.HeaderLength)
+            if (Slice.Count > Data.Header.MsDosHeader.HeaderLength)
             {
                 collector.Add(new MsDosHeaderException("The MS-DOS header is too long."));
             }
-            if (Slice.Count < Constants.Headers.MsDosHeader.HeaderLength)
+            if (Slice.Count < Data.Header.MsDosHeader.HeaderLength)
             {
                 collector.Add(new MsDosHeaderException("The MS-DOS header is too short."));
             }
@@ -27,8 +27,8 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
 
             LongFileAddressOfNewExeHeader = BitConverter.ToUInt32(
                 Slice.GetSlice(
-                        Constants.Headers.MsDosHeader.LfanewStartingOffset,
-                        Constants.Headers.MsDosHeader.LfanewLength)
+                        Data.Header.MsDosHeader.LfanewStartingOffset,
+                        Data.Header.MsDosHeader.LfanewLength)
                     .Dump(), 0);
         }
         
@@ -40,8 +40,8 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
             while (cursor.Read(out var currentByte))
             {
                 if (currentByte != Constants.Headers.MsDosHeader.ValidMsDosHeader[iterator] &&
-                    (iterator < Constants.Headers.MsDosHeader.LfanewStartingOffset ||
-                     iterator > Constants.Headers.MsDosHeader.LfanewEndingOffset))
+                    (iterator < Data.Header.MsDosHeader.LfanewStartingOffset ||
+                     iterator > Data.Header.MsDosHeader.LfanewEndingOffset))
                 {
                     collector.Add(
                         new MsDosHeaderException($"The MS-DOS header has an invalid byte in offset {iterator}"));

@@ -14,28 +14,28 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
         public PortableExecutableFileHeaderSignature Signature { get; }
 
         public byte[] Machine => Slice.GetSlice(
-            Constants.Headers.FileHeader.MachineOffset,
-            Constants.Headers.FileHeader.MachineLength).Dump();
+            Data.Header.FileHeader.MachineOffset,
+            Data.Header.FileHeader.MachineLength).Dump();
 
         public UInt16 NumberOfSections => BitConverter.ToUInt16(
             Slice.GetSlice(
-                Constants.Headers.FileHeader.NumberOfSectionsOffset,
-                Constants.Headers.FileHeader.NumberOfSectionsLength).Dump(), 0);
+                Data.Header.FileHeader.NumberOfSectionsOffset,
+                Data.Header.FileHeader.NumberOfSectionsLength).Dump(), 0);
 
         public UInt32 PointerToSymbolTable => BitConverter.ToUInt32(
             Slice.GetSlice(
-                Constants.Headers.FileHeader.PointerToSymbolTableOffset,
-                Constants.Headers.FileHeader.PointerToSymbolTableLength).Dump(), 0);
+                Data.Header.FileHeader.PointerToSymbolTableOffset,
+                Data.Header.FileHeader.PointerToSymbolTableLength).Dump(), 0);
 
         public UInt32 NumberOfSymbols => BitConverter.ToUInt32(
             Slice.GetSlice(
-                Constants.Headers.FileHeader.NumberOfSymbolsOffset,
-                Constants.Headers.FileHeader.NumberOfSymbolsLength).Dump(), 0);
+                Data.Header.FileHeader.NumberOfSymbolsOffset,
+                Data.Header.FileHeader.NumberOfSymbolsLength).Dump(), 0);
 
         public UInt16 OptionalHeaderSize => BitConverter.ToUInt16(
             Slice.GetSlice(
-                Constants.Headers.FileHeader.OptionalHeaderSizeOffset,
-                Constants.Headers.FileHeader.OptionalHeaderSizeLength).Dump(), 0);
+                Data.Header.FileHeader.OptionalHeaderSizeOffset,
+                Data.Header.FileHeader.OptionalHeaderSizeLength).Dump(), 0);
 
         public DateTime TimestampUtc
         {
@@ -43,8 +43,8 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
             {
                 UInt32 seconds = BitConverter.ToUInt32(
                     Slice.GetSlice(
-                        Constants.Headers.FileHeader.TimeDateStampOffset,
-                        Constants.Headers.FileHeader.TimeDateStampLength).Dump(), 0);
+                        Data.Header.FileHeader.TimeDateStampOffset,
+                        Data.Header.FileHeader.TimeDateStampLength).Dump(), 0);
 
                 return Constants.Headers.FileHeader.UnixEpocBeginningDateTime.AddSeconds(seconds);
             }
@@ -52,11 +52,11 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
 
         public FileHeader(ExceptionCollector collector, MemorySlice slice) : base(slice)
         {
-            if (Slice.Count > Constants.Headers.FileHeader.PeFileHeaderLength)
+            if (Slice.Count > Data.Header.FileHeader.PeFileHeaderLength)
             {
                 collector.Add(new HeaderException("The PE File header is too long."));
             }
-            if (Slice.Count < Constants.Headers.FileHeader.PeFileHeaderLength)
+            if (Slice.Count < Data.Header.FileHeader.PeFileHeaderLength)
             {
                 collector.Add(new HeaderException("The PE File header is too short."));
             }
@@ -64,22 +64,22 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
             Signature = new PortableExecutableFileHeaderSignature(
                 collector,
                 Slice.GetSlice(
-                    Constants.Headers.FileHeader.SignatureOffset,
-                    Constants.Headers.FileHeader.SignatureLength));
+                    Data.Header.FileHeader.SignatureOffset,
+                    Data.Header.FileHeader.SignatureLength));
 
             Validate(collector);
 
             Characteristics = new FileHeaderCharacteristics(collector,
                 Slice.GetSlice(
-                    Constants.Headers.FileHeader.CharacteristicsOffset,
-                    Constants.Headers.FileHeader.CharacteristicsLength));
+                    Data.Header.FileHeader.CharacteristicsOffset,
+                    Data.Header.FileHeader.CharacteristicsLength));
         }
 
         private void Validate(ExceptionCollector collector)
         {
             var machineSlice = Slice.GetSlice(
-                Constants.Headers.FileHeader.MachineOffset,
-                Constants.Headers.FileHeader.MachineLength);
+                Data.Header.FileHeader.MachineOffset,
+                Data.Header.FileHeader.MachineLength);
             
             if (machineSlice[0] != Constants.Headers.FileHeader.ExpectedMachineValue[0] || machineSlice[1] != Constants.Headers.FileHeader.ExpectedMachineValue[1])
             {
@@ -88,15 +88,15 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
 
             if (BitConverter.ToUInt32(
                     Slice.GetSlice(
-                        Constants.Headers.FileHeader.PointerToSymbolTableOffset,
-                        Constants.Headers.FileHeader.PointerToSymbolTableLength).Dump(), 0) != 0)
+                        Data.Header.FileHeader.PointerToSymbolTableOffset,
+                        Data.Header.FileHeader.PointerToSymbolTableLength).Dump(), 0) != 0)
             {
                 collector.Add(new HeaderException("The Pointer to Symbol Table value does not match 0x0."));
             }
 
             if (BitConverter.ToUInt32(Slice.GetSlice(
-                    Constants.Headers.FileHeader.NumberOfSymbolsOffset,
-                    Constants.Headers.FileHeader.NumberOfSymbolsLength).Dump(), 0) != 0)
+                    Data.Header.FileHeader.NumberOfSymbolsOffset,
+                    Data.Header.FileHeader.NumberOfSymbolsLength).Dump(), 0) != 0)
             {
                 collector.Add(new HeaderException("The Number of Symbols value does not match 0x0."));
             }

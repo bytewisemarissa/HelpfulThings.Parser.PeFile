@@ -1,6 +1,7 @@
 ﻿using System;
 using HelpfulThings.Parser.PeFile.Common;
 using HelpfulThings.Parser.PeFile.Data;
+using HelpfulThings.Parser.PeFile.Data.Header;
 using HelpfulThings.Parser.PeFile.Exceptions;
 using HelpfulThings.Tooling.MemoryWindow;
 
@@ -12,21 +13,21 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
 
         #region ECMA-335 Naming
         // ReSharper disable once InconsistentNaming
-        public bool IMAGE_FILE_RELOCS_STRIPPED => Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ImageFileRelocsStrippedMask);
+        public bool IMAGE_FILE_RELOCS_STRIPPED => Convert.ToBoolean(_characteristics & Characteristics.ImageFileRelocsStrippedMask);
         // ReSharper disable once InconsistentNaming
-        public bool IMAGE_FILE_EXECUTABLE_IMAGE => Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ImageFileExecutableImageMask);
+        public bool IMAGE_FILE_EXECUTABLE_IMAGE => Convert.ToBoolean(_characteristics & Characteristics.ImageFileExecutableImageMask);
         // ReSharper disable once InconsistentNaming
-        public bool IMPLEMENTATION_SPECIFIC1 => Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ImplementationSpecific1);
+        public bool IMPLEMENTATION_SPECIFIC1 => Convert.ToBoolean(_characteristics & Characteristics.ImplementationSpecific1);
         // ReSharper disable once InconsistentNaming
-        public bool IMPLEMENTATION_SPECIFIC2 => Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ImplementationSpecific2);
+        public bool IMPLEMENTATION_SPECIFIC2 => Convert.ToBoolean(_characteristics & Characteristics.ImplementationSpecific2);
         // ReSharper disable once InconsistentNaming
-        public bool IMPLEMENTATION_SPECIFIC3 => Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ImplementationSpecific3);
+        public bool IMPLEMENTATION_SPECIFIC3 => Convert.ToBoolean(_characteristics & Characteristics.ImplementationSpecific3);
         // ReSharper disable once InconsistentNaming
-        public bool IMPLEMENTATION_SPECIFIC4 => Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ImplementationSpecific4);
+        public bool IMPLEMENTATION_SPECIFIC4 => Convert.ToBoolean(_characteristics & Characteristics.ImplementationSpecific4);
         // ReSharper disable once InconsistentNaming
-        public bool IMAGE_FILE_32BIT_MACHINE => Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ImageFile32BitMachineMask);
+        public bool IMAGE_FILE_32BIT_MACHINE => Convert.ToBoolean(_characteristics & Characteristics.ImageFile32BitMachineMask);
         // ReSharper disable once InconsistentNaming
-        public bool IMAGE_FILE_DLL => Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ImageFileDllMask);
+        public bool IMAGE_FILE_DLL => Convert.ToBoolean(_characteristics & Characteristics.ImageFileDllMask);
         #endregion
 
         #region FriendlyNaming
@@ -42,11 +43,11 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
 
         public FileHeaderCharacteristics(ExceptionCollector collector, MemorySlice slice) : base(slice)
         {
-            if (Slice.Count > Constants.Headers.Characteristics.CharacteristicsLength)
+            if (Slice.Count > Characteristics.CharacteristicsLength)
             {
                 collector.Add(new CharacteristicsException(ExceptionLevel.Critical, "The PE Characteristics is too long."));
             }
-            if (Slice.Count < Constants.Headers.Characteristics.CharacteristicsLength)
+            if (Slice.Count < Characteristics.CharacteristicsLength)
             {
                 collector.Add(new CharacteristicsException(ExceptionLevel.Critical, "The PE Characteristics is too short."));
             }
@@ -64,7 +65,7 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
             if (!IMAGE_FILE_EXECUTABLE_IMAGE)
                 collector.Add(new CharacteristicsException(ExceptionLevel.Problem, $"{nameof(IMAGE_FILE_EXECUTABLE_IMAGE)} should be true"));
 
-            if (Convert.ToBoolean(_characteristics & Constants.Headers.Characteristics.ZeroCheck))
+            if (Convert.ToBoolean(_characteristics & Characteristics.ZeroCheck))
             {
                 collector.Add(new CharacteristicsException(ExceptionLevel.Warning, $"Some characteristics bits which should be zero are not."));
             }

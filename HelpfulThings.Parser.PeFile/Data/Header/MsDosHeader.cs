@@ -22,10 +22,10 @@
             0x24, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
         };
 
-        public readonly int HeaderLength = 128;
+        public const int HeaderLength = 128;
 
-        public readonly int LfanewStartingOffset = 60;
-        public readonly int LfanewEndingOffset = 63;
-        public readonly int LfanewLength = 4;
+        public const int LfanewStartingOffset = 60;
+        public const int LfanewEndingOffset = 63;
+        public const int LfanewLength = 4;
     }
 }

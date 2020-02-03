@@ -13,22 +13,22 @@ namespace HelpfulThings.Parser.PeFile.FileHeaders
 
         public OptionalHeader(ExceptionCollector collector, MemorySlice slice) : base(slice)
         {
-            if (Slice.Count > Constants.Headers.OptionalHeader.PeOptionalHeaderLength)
+            if (Slice.Count > Data.Header.OptionalHeader.PeOptionalHeaderLength)
             {
                 collector.Add(new OptionalHeaderException(ExceptionLevel.Critical, "The PE Optional header is too long."));
             }
-            if (Slice.Count < Constants.Headers.OptionalHeader.PeOptionalHeaderLength)
+            if (Slice.Count < Data.Header.OptionalHeader.PeOptionalHeaderLength)
             {
                 collector.Add(new OptionalHeaderException(ExceptionLevel.Critical, "The PE Optional header is too short."));
             }
 
             StandardFields = new OptionalHeaderStandardFields(collector, slice.GetSlice(
-                Constants.Headers.OptionalHeader.StandardFieldsOffset,
-                Constants.Headers.OptionalHeader.StandardFieldsLength));
+                Data.Header.OptionalHeader.StandardFieldsOffset,
+                Data.Header.OptionalHeader.StandardFieldsLength));
 
             NtSpecificFields = new OptionalHeaderNtSpecificFields(collector, slice.GetSlice(
-                Constants.Headers.OptionalHeader.NtSpecificFieldsOffset,
-                Constants.Headers.OptionalHeader.NtSpecificFieldsLength));
+                Data.Header.OptionalHeader.NtSpecificFieldsOffset,
+                Data.Header.OptionalHeader.NtSpecificFieldsLength));
         }
 
 
